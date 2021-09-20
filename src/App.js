@@ -16,7 +16,7 @@ export default class App extends React.Component {
     // see ../config-overrides.js
 
     const me = this;
-    Promise.all([initSqlJs(), fetch('./test.db')]).then(async res => {
+    Promise.all([initSqlJs(), fetch('./database1.sqlite3')]).then(async res => {
       const SQLite = res[0], dbStorage = res[1];
       const db = new SQLite.Database(new Uint8Array(await dbStorage.arrayBuffer()));
 
@@ -78,7 +78,7 @@ export default class App extends React.Component {
         <textarea
           onChange={e => this.exec(e.target.value)}
           placeholder="Enter some SQL. No inpiration ? Try “select sqlite_version()”"
-          defaultValue="SELECT * FROM db_articles"
+          defaultValue="SELECT * FROM employees"
         />
 
         <pre className="error">{(err || "").toString()}</pre>
